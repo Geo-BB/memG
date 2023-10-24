@@ -21,28 +21,28 @@
     border-radius: 5px;
   }
   
-  /* Styling for the inner grid */
-  .inner-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1px;
-  }
-  
-  /* Styling for the inner boxes with colors */
-  .inner-box {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-content: center;
-    background-size: 87%;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-  }
+/* Styling for the inner grid */
+.inner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-auto-rows: minmax(auto, 1fr); /* Auto-sized rows */
+  gap: 1px;
+}
+
+/* Styling for the inner boxes with colors */
+.inner-box {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
   .reset{
     margin-top: 20px;
   }
@@ -289,23 +289,44 @@
 <button class="reset" onclick="reset()">Reset</button>
 
 <script>
+      const innerBoxSelectionCount = {
+        tape: 0,
+        apple: 0,
+        cycle: 0,
+        arrow: 0,
+        book: 0,
+        phone: 0,
+        clock: 0,
+        shoe: 0
+    };
+
   function changeColor(box) {
     //prevent from firing parent onclick
     event.stopPropagation();
     
-    // Get the parent (outer box) and change its background color
-    const outerBox = box.parentElement.parentElement
+    const innerBoxClass = box.classList[1];
+    
+    if (innerBoxSelectionCount[innerBoxClass] < 2) {
+        innerBoxSelectionCount[innerBoxClass]++;
+        const outerBox = box.parentElement.parentElement
+        outerBox.style.backgroundImage =  'url("assets/'+box.id+'.jpg")';
+        box.parentElement.style.display = 'none';
+        outerBox.id = box.id;
+    }
+    showOrHideInnerBoxes();
 
-
-    outerBox.style.backgroundImage =  'url("assets/'+box.id+'.jpg")';
-    // Hide the inner grid
-    box.parentElement.style.display = 'none';
   }
   function resetBox(outerBox) {
     // Reset the background color
     outerBox.style.backgroundImage = 'none';
     // Show the inner grid
     outerBox.querySelector('.inner-grid').style.display = 'grid';
+    innerBoxSelectionCount[outerBox.id]--;
+    outerBox.id = "";
+    showOrHideInnerBoxes();
+
+
+
   }
   function reset() {
     // Get all the outer boxes
@@ -317,6 +338,30 @@
       // Show the inner grid
       outerBox.querySelector('.inner-grid').style.display = 'grid';
     });
+    // Reset the inner box selection count
+    for (const innerBoxClass in innerBoxSelectionCount) {
+      innerBoxSelectionCount[innerBoxClass] = 0;
+    }
+    document.querySelectorAll('.inner-box').forEach((box) => {
+      box.style.display = 'grid';
+    });
+  }
+  function showOrHideInnerBoxes(){
+    for (const innerBoxClass in innerBoxSelectionCount) {
+    const selectionCount = innerBoxSelectionCount[innerBoxClass];
+    
+    if (selectionCount >= 2) {
+        // Hide inner boxes with the class that has been selected 2 or more times
+        document.querySelectorAll('.' + innerBoxClass).forEach((box) => {
+        box.style.display = 'none';
+        });
+    } else {
+        // Show inner boxes with the class that has been selected less than 2 times
+        document.querySelectorAll('.' + innerBoxClass).forEach((box) => {
+        box.style.display = 'grid';
+        });
+    }
+    }
   }
 </script>
 </body>
