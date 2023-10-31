@@ -1,375 +1,222 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-  /* Styling for the outer grid */
-  .outer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 150px);
-    grid-template-rows: repeat(4, 150px);
-    gap: 5px;
-  }
-  
-  /* Styling for each outer box */
-  .outer-box {
-    width: 150px;
-    height: 150px;
-    display: grid;
-    background-color: white;
-    border: 1px solid black;
-    background-size: contain;
-    border-radius: 5px;
-  }
-  
-/* Styling for the inner grid */
-.inner-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
-  grid-auto-rows: minmax(auto, 1fr); /* Auto-sized rows */
-  gap: 1px;
-}
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      width: 317px;
+    }
+    .grid-container2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+      width: 160px;
+      height: 160px;
+    }
 
-/* Styling for the inner boxes with colors */
-.inner-box {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
+    .grid-item {
+      text-align: start;
+      border: 1px solid #ccc;
+      padding: 2px;
+      width: 70px;
+      height: 70px;
+      background-size: contain;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    input{
+        width: 10px;
+    }
+    .wrapper{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .letter{
+        background-color: white;
+        width: 12px;
+        border-radius: 2px;
+        font-size: 23px;
+        font-family: sans-serif;
+        padding: 2px;
+    }
+    .button-container{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .reset{
+      background-color: #007eff;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      flex: 1;
+      .icon{
+        transform: rotate(116deg);
+        transition: all 0.5s linear;
+      }
+    }
+    .clear{
+      background-color: #007eff;
+      border: none;
+      padding: 0px;
+      border-radius: 5px;
+      width: 23px;
+      flex: 3.29;
 
-
-  .reset{
-    margin-top: 11px;
-    width: 618px;
-    background-color: #007eff;
-    border: none;
-    padding: 12px 0px;
-    color: white;
-    border-radius: 5px;
-    font-size: 20px;
-  }
-  
-  /* Colors for the inner boxes */
-  .tape { background-image :url('assets/tape.jpg'); }
-  .apple { background-image: url('assets/apple.jpg'); }
-  .cycle { background-image: url('assets/cycle.jpg'); }
-  .arrow { background-image: url('assets/arrow.jpg'); }
-  .book { background-image: url('assets/book.jpg'); }
-  .phone { background-image: url('assets/phone.jpg'); }
-  .clock { background-image: url('assets/clock.jpg'); }
-  .shoe { background-image: url('assets/shoe.jpg'); }
-</style>
+    }
+    .input-contaier {
+      display: flex;
+      gap: 5px;
+    }
+    @keyframes rotate360 {
+      from {
+        transform: rotate(116deg);
+      }
+      to {
+        transform: rotate(476deg);
+      }
+    }
+    .rotate-animation {
+      animation: rotate360 0.3s cubic-bezier(0.4, 0, 1, 1);
+    }
+      </style>
 </head>
 <body>
-<div class="outer-grid">
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
-    <!-- Outer boxes -->
-    <div class="outer-box" onclick="resetBox(this)">
-      <div class="inner-grid">
-        <!-- Inner boxes with colors -->
-        <div id="tape" class="inner-box tape" onclick="changeColor(this)"></div>
-        <div id="apple"class="inner-box apple" onclick="changeColor(this)"></div>
-        <div id="cycle" class="inner-box cycle" onclick="changeColor(this)"></div>
-        <div id="arrow" class="inner-box arrow" onclick="changeColor(this)"></div>
-        <div id="book" class="inner-box book" onclick="changeColor(this)"></div>
-        <div id="phone" class="inner-box phone" onclick="changeColor(this)"></div>
-        <div id="clock" class="inner-box clock" onclick="changeColor(this)"></div>
-        <div id="shoe" class="inner-box shoe" onclick="changeColor(this)"></div>
-      </div>
-    </div>
+<div class='wrapper'>
+
+<div class="grid-container">
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+  <div class="grid-item puzzle-box"></div>
+</div>
+<div class="input-contaier">
+  <div class="button-container">
+    <button class="clear" onclick="clearBox()">
+      <svg  width="20" height="20" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" baseProfile="full" xml:space="preserve"><path fill="#fff" d="M18.015 41.535a5 5 0 0 1 0-7.07l8.95-8.95C28.068 24.41 29 24 31 24h21a5 5 0 0 1 5 5v18a5 5 0 0 1-5 5H31c-2 0-2.932-.411-4.035-1.515l-8.95-8.95Zm29.513 1.415L42.578 38l4.95-4.95-2.578-2.578-4.95 4.95-4.95-4.95-2.578 2.578 4.95 4.95-4.95 4.95 2.578 2.578 4.95-4.95 4.95 4.95 2.578-2.578Z"/></svg>
+    </button>
+    <button class="reset" onclick="reset()">
+      <svg class="icon" fill="#fff" width="10" height="10" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><path d="M960 0v213.333c411.627 0 746.667 334.934 746.667 746.667S1371.627 1706.667 960 1706.667 213.333 1371.733 213.333 960c0-197.013 78.4-382.507 213.334-520.747v254.08H640V106.667H53.333V320h191.04C88.64 494.08 0 720.96 0 960c0 529.28 430.613 960 960 960s960-430.72 960-960S1489.387 0 960 0" fill-rule="evenodd"/></svg>
+    </button>
+  </div>
+
+  <div class="grid-container2">
+    <div id="shoe" style="background-image:url('assets/shoe.jpg');" class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="arrow" style="background-image: url('assets/arrow.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="phone" style="background-image: url('assets/phone.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="cycle" style="background-image: url('assets/cycle.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="book" style="background-image: url('assets/book.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="tape" style="background-image: url('assets/tape.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="apple" style="background-image: url('assets/apple.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+    <div id="clock" style="background-image: url('assets/clock.jpg'); " class="grid-item input-box" onclick="fillGrid(this)" ></div>
+  </div>
+</div>
 
 </div>
-<button class="reset" onclick="reset()">Reset</button>
+
 
 <script>
-      const innerBoxSelectionCount = {
-        tape: 0,
-        apple: 0,
-        cycle: 0,
-        arrow: 0,
-        book: 0,
-        phone: 0,
-        clock: 0,
-        shoe: 0
-    };
 
-  function changeColor(box) {
-    //prevent from firing parent onclick
-    event.stopPropagation();
-    
-    const innerBoxClass = box.classList[1];
-    
-    if (innerBoxSelectionCount[innerBoxClass] < 2) {
-        innerBoxSelectionCount[innerBoxClass]++;
-        const outerBox = box.parentElement.parentElement
-        outerBox.style.backgroundImage =  'url("assets/'+box.id+'.jpg")';
-        box.parentElement.style.display = 'none';
-        outerBox.id = box.id;
+
+  let currentBox = 1;
+  let enteredvalues = [];
+  changeBorderStyleOfCurrentBox();
+
+
+  function fillGrid(element){
+    if(enteredvalues.filter(item => item == element.id).length > 1){
+      return;
     }
-    showOrHideInnerBoxes();
-
+    enteredvalues.push(element.id);
+    let id = element.id;
+    let box = document.querySelectorAll('.puzzle-box')[currentBox-1];
+    box.style.backgroundImage = 'url(assets/'+id+'.jpg)';
+    box.style.backgroundSize = 'contain';
+    box.style.borderRadius = '5px';
+    box.style.border = '1px solid #ccc';
+    currentBox++;
+    changeOpacity();
+    changeBorderStyleOfCurrentBox();
   }
-  function resetBox(outerBox) {
-    // Reset the background color
-    outerBox.style.backgroundImage = 'none';
-    // Show the inner grid
-    outerBox.querySelector('.inner-grid').style.display = 'grid';
-    innerBoxSelectionCount[outerBox.id]--;
-    outerBox.id = "";
-    showOrHideInnerBoxes();
 
-
-
+  function changeOpacity(){
+    let boxes = document.querySelectorAll('.input-box');
+    boxes.forEach(box => {
+      if(enteredvalues.filter(item => item == box.id).length > 1){
+        box.style.opacity = '0.3';
+      }
+      else{
+        box.style.opacity = '1';
+      }
+    })
   }
-  function reset() {
-    // Get all the outer boxes
-    const outerBoxes = document.querySelectorAll('.outer-box');
-    // Loop through each outer box
-    outerBoxes.forEach((outerBox) => {
-      // Reset the background color
-      outerBox.style.backgroundImage = 'none';
-      // Show the inner grid
-      outerBox.querySelector('.inner-grid').style.display = 'grid';
-    });
-    // Reset the inner box selection count
-    for (const innerBoxClass in innerBoxSelectionCount) {
-      innerBoxSelectionCount[innerBoxClass] = 0;
-    }
-    document.querySelectorAll('.inner-box').forEach((box) => {
-      box.style.display = 'grid';
+
+  function reset(){
+    let boxes = document.querySelectorAll('.puzzle-box');
+    boxes.forEach(box => {
+      box.style.backgroundImage = '';
+    })
+    enteredvalues = [];
+    currentBox = 1;
+    changeOpacity();
+    changeBorderStyleOfCurrentBox();
+    rotateIcon();
+  }
+  function rotateIcon() {
+    const svgIcon = document.querySelector('.reset svg');
+    svgIcon.classList.add('rotate-animation');
+    // Remove the class after the animation ends to allow it to be retriggered
+    svgIcon.addEventListener('animationend', () => {
+      svgIcon.classList.remove('rotate-animation');
     });
   }
-  function showOrHideInnerBoxes(){
-    for (const innerBoxClass in innerBoxSelectionCount) {
-    const selectionCount = innerBoxSelectionCount[innerBoxClass];
-    
-    if (selectionCount >= 2) {
-        // Hide inner boxes with the class that has been selected 2 or more times
-        document.querySelectorAll('.' + innerBoxClass).forEach((box) => {
-        box.style.display = 'none';
-        });
-    } else {
-        // Show inner boxes with the class that has been selected less than 2 times
-        document.querySelectorAll('.' + innerBoxClass).forEach((box) => {
-        box.style.display = 'grid';
-        });
+
+  function clearBox() {
+    if (currentBox > 1 && enteredvalues.length > 0) {
+      currentBox--; // Move to the previous box
+      const currentPuzzleBox = document.querySelectorAll('.puzzle-box')[currentBox - 1];
+      currentPuzzleBox.style.backgroundImage = '';
+      enteredvalues.pop(); // Remove the last entered value
+      changeOpacity(); // Update the opacity of the input boxes
     }
+    changeBorderStyleOfCurrentBox();
+  }
+
+  function changeBorderStyleOfCurrentBox(){
+    // claer all the border styles and add border to current box
+    let boxes = document.querySelectorAll('.puzzle-box');
+    boxes.forEach(box => {
+      box.style.border = '1px solid #ccc';
+    })
+    if(currentBox <= 16){
+      boxes[currentBox-1].style.border = '3px solid #007eff';
+    }
+    else{
+      boxes[15].style.border = '3px solid #007eff';
     }
   }
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
