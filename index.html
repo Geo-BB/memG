@@ -167,14 +167,17 @@
   }
 
   function reset(){
-    let boxes = document.querySelectorAll('.puzzle-box');
-    boxes.forEach(box => {
-      box.style.backgroundImage = '';
-    })
-    enteredvalues = [];
-    currentBox = 1;
-    changeOpacity();
-    changeBorderStyleOfCurrentBox();
+    setTimeout(() => {
+      let boxes = document.querySelectorAll('.puzzle-box');
+      boxes.forEach(box => {
+        box.style.backgroundImage = '';
+      })
+      enteredvalues = [];
+      currentBox = 1;
+      changeOpacity();
+      changeBorderStyleOfCurrentBox();
+    }, 300);
+
     rotateIcon();
   }
   function rotateIcon() {
